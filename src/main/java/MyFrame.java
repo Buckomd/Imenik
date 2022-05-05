@@ -65,7 +65,7 @@ public class MyFrame extends JFrame {
                         String out = rs.getString("kor_password");
 
                         if(pass.equals(out))
-                        System.out.println("Logovani ste!!!!");
+                        System.out.println("Logovani ste!!!!asdad");
                     }
 
                 } catch (Exception ex) {
