@@ -45,7 +45,6 @@ public class MyFrame extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String pass = String.valueOf(jPasswordField.getPassword());
-                System.out.println(pass);
                 String user = jComboBox.getSelectedItem().toString();
 
                 String server_ip = "127.0.0.1";
@@ -58,21 +57,21 @@ public class MyFrame extends JFrame {
                 try(Connection connection = DriverManager.getConnection(url,"root","Aleksandar.94")) {
 
                     System.out.println("Tu smo!");
-
-                    String sql = "SELECT * FROM vezbaimenik.korisnik WHERE kor_username LIKE '%" +user+ "%'";
-
+                    String sql = "SELECT * FROM vezbaimenik.korisnik where kor_username LIKE '%" + user + "%'";
 
                     ResultSet rs = connection.createStatement().executeQuery(sql);
-                    System.out.println("OVDE SMo");
 
                     while (rs.next()){
-                        String out = rs.getString("kor_username") + " " + rs.getString("kor_password");
-                        System.out.println(out);
+                        String out = rs.getString("kor_password");
+
+                        if(pass.equals(out))
+                        System.out.println("Logovani ste!!!!");
                     }
 
                 } catch (Exception ex) {
                 }
 
+                user = null;
             }
 
         });
