@@ -13,6 +13,7 @@ public class MyFrame extends JFrame {
     private JPasswordField jPasswordField;
     private JButton jButton;
     private String[] username = {"buckomd", "krists"};
+    private String ime;
 
 
 
