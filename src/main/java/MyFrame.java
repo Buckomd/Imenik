@@ -8,11 +8,11 @@ import java.sql.ResultSet;
 
 public class MyFrame extends JFrame {
 
-    private static String tittle = "Imenik";
+    private static String tittle = "Login for acess to Imenik";
     private JComboBox jComboBox;
     private JPasswordField jPasswordField;
     private JButton jButton;
-    private String[] username = {"buckomd", "krits"};
+    private String[] username = {"buckomd", "krists"};
 
 
 
@@ -48,7 +48,7 @@ public class MyFrame extends JFrame {
                 String user = jComboBox.getSelectedItem().toString();
 
                 String server_ip = "127.0.0.1";
-                String shema = "vezbaimenik";
+                String shema = "imenik";
                 String url = "jdbc:mysql://" + server_ip + "/" + shema;
 
 
@@ -56,9 +56,7 @@ public class MyFrame extends JFrame {
 
                 try(Connection connection = DriverManager.getConnection(url,"root","Aleksandar.94")) {
 
-                    System.out.println("Tu smo!");
-                    String sql = "SELECT * FROM vezbaimenik.korisnik where kor_username LIKE '%" + user + "%'";
-
+                    String sql = "SELECT * FROM imenik.korisnik where kor_username LIKE '%" + user + "%'";
                     ResultSet rs = connection.createStatement().executeQuery(sql);
 
                     while (rs.next()){
@@ -70,10 +68,7 @@ public class MyFrame extends JFrame {
 
                 } catch (Exception ex) {
                 }
-
-                user = null;
             }
-
         });
     }
 
