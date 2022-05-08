@@ -6,7 +6,7 @@ public class Test extends JFrame {
     public static void main(String[] args) {
 
 
-        AddWindow addWindow = new AddWindow();
-        addWindow.setVisible(true);
+        Imenik imenik = new Imenik();
+        imenik.setVisible(true);
     }
 }

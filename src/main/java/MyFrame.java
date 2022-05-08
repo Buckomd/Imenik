@@ -12,8 +12,8 @@ public class MyFrame extends JFrame {
     private JComboBox jComboBox;
     private JPasswordField jPasswordField;
     private JButton jButton;
+    private JOptionPane jOptionPane;
     private String[] username = {"buckomd", "krists"};
-
 
 
     public MyFrame() {
@@ -48,24 +48,27 @@ public class MyFrame extends JFrame {
                 String user = jComboBox.getSelectedItem().toString();
 
                 String server_ip = "127.0.0.1";
-                String shema = "imenik";
+                String shema = "vezbaimenik";
                 String url = "jdbc:mysql://" + server_ip + "/" + shema;
+                String sql = "SELECT * FROM vezbaimenik.korisnik where kor_username LIKE '%" + user + "%'";
 
 
+                try (Connection connection = DriverManager.getConnection(url, "root", "Aleksandar.94")) {
 
-
-                try(Connection connection = DriverManager.getConnection(url,"root","Aleksandar.94")) {
-
-                    String sql = "SELECT * FROM imenik.korisnik where kor_username LIKE '%" + user + "%'";
                     ResultSet rs = connection.createStatement().executeQuery(sql);
 
-                    while (rs.next()){
-                        String out = rs.getString("kor_password");
+                    while (rs.next()) {
+                        String passFromTable = rs.getString("kor_password");
 
-                        if(pass.equals(out))
-                        System.out.println("Logovani ste!!!!asdad");
+                        if (pass.equals(passFromTable)) {
+                            Imenik imenik = new Imenik();
+                            imenik.setVisible(true);
+                            setVisible(false);
+                        } else {
+                            JFrame f = new JFrame();
+                            JOptionPane.showMessageDialog(f, "Wrong Password!");
+                        }
                     }
-
                 } catch (Exception ex) {
                 }
             }
