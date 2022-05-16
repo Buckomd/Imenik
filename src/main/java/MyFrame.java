@@ -52,9 +52,7 @@ public class MyFrame extends JFrame {
                 String url = "jdbc:mysql://" + server_ip + "/" + shema;
                 String sql = "SELECT * FROM vezbaimenik.korisnik where kor_username LIKE '%" + user + "%'";
 
-
                 try (Connection connection = DriverManager.getConnection(url, "root", "Aleksandar.94")) {
-
                     ResultSet rs = connection.createStatement().executeQuery(sql);
 
                     while (rs.next()) {

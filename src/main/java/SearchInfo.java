@@ -12,7 +12,7 @@ public class SearchInfo extends JFrame {
 
     private Object[][] data;
     private String[] columns;
-    private int width = 600, height = 200;
+    private int width = 600, height = 260;
     private Connection connection = null;
 
     private JPanel btnPnl, topBtnPnl, bottombtnPnl;
@@ -39,7 +39,7 @@ public class SearchInfo extends JFrame {
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         Point centerPoint = ge.getCenterPoint();
         this.setBounds(centerPoint.x - height / 2, centerPoint.y, width, height);
-        setTitle("Searched Information");
+        setTitle("Searched Informations");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
     }
@@ -48,13 +48,11 @@ public class SearchInfo extends JFrame {
         DefaultTableModel model = new DefaultTableModel(data, columns);
         table = new JTable(model) {
             public Class getColumnClass(int column) {
-
                 return getValueAt(0, column).getClass();
             }
         };
         JScrollPane scrollPane = new JScrollPane(table);
     }
-
 
     private void initializationComponents() {
         btnAdd = new JButton("Add new contact");
@@ -65,7 +63,6 @@ public class SearchInfo extends JFrame {
         topBtnPnl = new JPanel(new FlowLayout(FlowLayout.TRAILING));
         bottombtnPnl = new JPanel(new FlowLayout(FlowLayout.CENTER));
     }
-
 
     private void addComponents() {
         topBtnPnl.add(btnSelectAll);
@@ -80,7 +77,6 @@ public class SearchInfo extends JFrame {
         add(table, BorderLayout.CENTER);
         add(btnPnl, BorderLayout.SOUTH);
     }
-
 
     private void addActionListener() {
 
@@ -114,7 +110,7 @@ public class SearchInfo extends JFrame {
                     for (int i = 0; i < table.getModel().getRowCount(); i++) {
 
 
-                        if (table.getModel().getValueAt(i, col)!=null) {
+                        if (table.getModel().getValueAt(i, col) != null) {
 
                             String server_ip = "127.0.0.1";
                             String shema = "vezbaimenik";
@@ -151,6 +147,19 @@ public class SearchInfo extends JFrame {
                     System.exit(0);
                 }
 
+            }
+        });
+
+        btnSelectAll.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                int col = 4;
+                for (int i = 0; i < table.getModel().getRowCount(); i++) {
+                    if (table.getModel().getValueAt(i, 0) != null) {
+                        table.getModel().setValueAt(true, i, col);
+                    }
+                }
             }
         });
 

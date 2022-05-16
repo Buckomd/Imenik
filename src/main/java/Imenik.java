@@ -31,7 +31,6 @@ public class Imenik extends JFrame {
         initializationComponents();
         addComponents();
         addActionListeners();
-
     }
 
 

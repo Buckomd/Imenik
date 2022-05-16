@@ -55,7 +55,7 @@ public class AddWindow extends JFrame {
         add(btnSave);
     }
 
-    private void addActionListener() {
+    private void addActionListener(){
         btnSave.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -69,16 +69,12 @@ public class AddWindow extends JFrame {
                 String adress = tfAdress.getText();
                 System.out.println(ime + prezime + mobile +adress);
 
-
-
-
                 String sql = "INSERT INTO vezbaimenik.imenik (imk_ime, imk_prezime,imk_telefon,imk_adresa) VALUES ('" +ime+"','"+prezime+"',"+mobile+",'"+adress+"')";
 
                 try {
                     if( connection == null ) {
                         connection = DriverManager.getConnection(url, "root", "Aleksandar.94");
                     }
-
                     Statement st = connection.createStatement();
                     st.executeUpdate(sql);
 
